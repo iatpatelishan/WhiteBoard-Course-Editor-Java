@@ -1,4 +1,4 @@
-package com.coursemanagement;
+package webdev;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
