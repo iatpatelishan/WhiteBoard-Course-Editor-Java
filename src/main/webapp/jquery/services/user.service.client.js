@@ -43,7 +43,7 @@ function UserServiceClient() {
 
     function updateUser(userId, user) {
         return fetch(self.url + '/' + userId, {
-            method: 'put',
+            method: 'PUT',
             body: JSON.stringify(user),
             headers: {
                 'content-type': 'application/json'

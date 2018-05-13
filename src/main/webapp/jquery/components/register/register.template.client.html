@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Register</title>
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
           integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.1.1/simplex/bootstrap.min.css" rel="stylesheet"
@@ -39,12 +39,12 @@
                 <fieldset>
                     <div class="form-group usernameGrp createGrp">
                         <label for="usernameFld">Username</label>
-                        <input type="text" class="form-control" id="usernameFld" name="usernameFld" placeholder="Enter Username" autofocus required>
+                        <input type="text" class="form-control" id="usernameFld" name="usernameFld" placeholder="Enter Username" autofocus required minlength="1" maxlength="40">
                         <div class="help-block with-errors"></div>
                     </div>
                     <div class="form-group passwordGrp createGrp">
                         <label for="passwordFld">Password</label>
-                        <input type="password" class="form-control" id="passwordFld" name="passwordFld" placeholder="Enter Password" required>
+                        <input type="password" class="form-control" id="passwordFld" name="passwordFld" placeholder="Enter Password" required minlength="1" maxlength="40">
                         <div class="help-block with-errors"></div>
                     </div>
                     <div class="form-group passwordGrp createGrp">
@@ -53,6 +53,11 @@
                         <div class="help-block with-errors"></div>
                     </div>
                     <button type="submit" class="btn btn-info btn-block wbdv-register">Register</button>
+                    <div class="row">
+                        <div class="col-6">
+                            <a href="../login/login.template.client.html" class="text-info">Login</a>
+                        </div>
+                    </div>
                 </fieldset>
             </div>
         </div>

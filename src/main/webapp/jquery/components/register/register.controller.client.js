@@ -1,6 +1,4 @@
 (function () {
-    var $usernameFld, $passwordFld, $verifyPasswordFld;
-    var $registerBtn;
     var userService = new UserServiceClient();
     $(main);
 
@@ -10,9 +8,9 @@
     }
 
     function register(event) {
-        var username = $('#usernameFld').val();
-        var password = $('#passwordFld').val();
-        var verifyPasswordFld = $('#verifyPasswordFld').val();
+        username = $('#usernameFld').val();
+        password = $('#passwordFld').val();
+        verifyPasswordFld = $('#verifyPasswordFld').val();
 
         if(password!=verifyPasswordFld) {
             swal("Error!", "Password Doesnt Match", "error");

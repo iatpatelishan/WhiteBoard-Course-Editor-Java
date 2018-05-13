@@ -7,6 +7,7 @@ import webdev.models.User;
 import webdev.repositories.UserRepository;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.Optional;
 
@@ -40,6 +41,12 @@ public class UserService {
             return userRepository.save(user);
         }
     }
+
+    @PostMapping("/api/login")
+    public User login(@RequestBody User user, HttpSession session) {
+        return null;
+    }
+
 
     @GetMapping("/api/user")
     public List<User> findAllUsers() {
