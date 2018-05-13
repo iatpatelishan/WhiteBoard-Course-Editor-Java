@@ -32,9 +32,9 @@
         <div class="row">
             <div class="col-lg-12">
                 <h2>Admin Panel
-                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#createUserModal"
+                    <button type="button" class="btn btn-info wbdv-create"
                             style="float:right;">
-                        <i class="fa fa-plus wbdv-create"></i> Create
+                        <i class="fa fa-plus"></i> Create
                     </button>
                 </h2>
 
@@ -54,20 +54,21 @@
                     <th>Role</th>
                     <th>&nbsp;</th>
                 </tr>
-                <tr class="wbdv-template wbdv-user wbdv-hidden">
-                    <td class="wbdv-username">ada</td>
-                    <td class="wbdv-first-name">Ada</td>
-                    <td class="wbdv-last-name">Lovelace</td>
-                    <td class="wbdv-role">FACULTY</td>
-                    <td class="wbdv-actions">
-                        <span class="float-right">
-                            <i id="wbdv-remove" class="fa-2x fa fa-times wbdv-remove"></i>
-                            <i id="wbdv-edit" class="fa-2x fa fa-pencil wbdv-edit"></i>
-                        </span>
-                    </td>
-                </tr>
                 </thead>
                 <tbody class="wbdv-tbody">
+                    <tr class="wbdv-template wbdv-user wbdv-hidden">
+                        <td class="wbdv-username">ada</td>
+                        <td class="wbdv-first-name">Ada</td>
+                        <td class="wbdv-last-name">Lovelace</td>
+                        <td class="wbdv-role">FACULTY</td>
+                        <td class="wbdv-actions">
+                            <span class="float-right">
+                                <i id="wbdv-remove" class="fa-2x fa fa-times wbdv-remove"></i>
+                                <i id="wbdv-edit" class="fa-2x fa fa-pencil wbdv-edit"></i>
+                            </span>
+                        </td>
+                    </tr>
+
                 </tbody>
             </table>
 
@@ -80,12 +81,12 @@
 
 
 <!-- Modal -->
-<div class="modal fade" id="createUserModal" tabindex="-1" role="dialog" aria-labelledby="createUserModal"
+<div class="modal fade" id="createUpdateUserModal" tabindex="-1" role="dialog" aria-labelledby="createUpdateUserModal"
      aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Create User</h5>
+                <h5 class="modal-title" id="modalTitle"></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -93,6 +94,7 @@
             <div class="modal-body">
                 <form>
                     <fieldset>
+                        <input type="hidden" class="form-control" id="userIdFld">
                         <div class="form-group">
                             <label for="usernameFld">Username</label>
                             <input type="email" class="form-control" id="usernameFld" placeholder="Enter Username">
@@ -109,12 +111,22 @@
                             <label for="lastNameFld">Last Name</label>
                             <input type="text" class="form-control" id="lastNameFld" placeholder="Last Name">
                         </div>
+                        <div class="form-group">
+                            <div class="custom-control custom-radio">
+                                <input type="radio" id="facultyFld" name="roleRadioFld" class="custom-control-input" checked="" value="Faculty">
+                                <label class="custom-control-label" for="facultyFld">Faculty</label>
+                            </div>
+                            <div class="custom-control custom-radio">
+                                <input type="radio" id="studentFld" name="roleRadioFld" class="custom-control-input" value="Student">
+                                <label class="custom-control-label" for="studentFld">Student</label>
+                            </div>
+                        </div>
                     </fieldset>
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" id="createUser">Submit</button>
+                <button type="button" class="btn btn-primary" id="modalSubmit"></button>
             </div>
         </div>
     </div>
