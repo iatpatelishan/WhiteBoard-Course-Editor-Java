@@ -36,6 +36,11 @@
                             style="float:right;">
                         <i class="fa fa-plus"></i> Create
                     </button>
+                    <button type="button" class="btn btn-success wbdv-retrieve"
+                            style="float:right; margin-left: 10px; margin-right: 10px;">
+                        <i class="fa fa-search"></i> Retrieve By Id
+                    </button>
+                    <input class="form-control" id="wbdv-mySearchInput" type="text" placeholder="Search/Filter by Keyword" style="float: right; max-width: 200px;" autofocus>
                 </h2>
 
 
@@ -45,7 +50,7 @@
 
     <div class="row">
         <div class="col-lg-12">
-            <table class="table">
+            <table class="table table-striped">
                 <thead>
                 <tr>
                     <th>Username</th>
@@ -94,24 +99,28 @@
             <div class="modal-body">
                 <form>
                     <fieldset>
-                        <input type="hidden" class="form-control" id="userIdFld">
-                        <div class="form-group">
+                        <div class="form-group idGrp retrieveGrp">
+                            <label for="userIdFld">Id</label>
+                            <input type="text" class="form-control" id="userIdFld" placeholder="Enter Id">
+                            <div class="invalid-feedback">Invalid User id</div>
+                        </div>
+                        <div class="form-group usernameGrp createGrp">
                             <label for="usernameFld">Username</label>
                             <input type="email" class="form-control" id="usernameFld" placeholder="Enter Username">
                         </div>
-                        <div class="form-group">
+                        <div class="form-group passwordGrp createGrp">
                             <label for="passwordFld">Password</label>
                             <input type="password" class="form-control" id="passwordFld" placeholder="Password">
                         </div>
-                        <div class="form-group">
+                        <div class="form-group firstNameGrp createGrp">
                             <label for="firstNameFld">First Name</label>
                             <input type="text" class="form-control" id="firstNameFld" placeholder="First Name">
                         </div>
-                        <div class="form-group">
+                        <div class="form-group lastNameGrp createGrp">
                             <label for="lastNameFld">Last Name</label>
                             <input type="text" class="form-control" id="lastNameFld" placeholder="Last Name">
                         </div>
-                        <div class="form-group">
+                        <div class="form-group roleGrp createGrp">
                             <div class="custom-control custom-radio">
                                 <input type="radio" id="facultyFld" name="roleRadioFld" class="custom-control-input" checked="" value="Faculty">
                                 <label class="custom-control-label" for="facultyFld">Faculty</label>

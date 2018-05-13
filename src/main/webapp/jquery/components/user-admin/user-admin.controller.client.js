@@ -8,8 +8,17 @@
         template = $('.wbdv-template');
 
         $('.wbdv-create').click(createUserModal);
+        $('.wbdv-retrieve').click(retrieveUserModal);
+
+        $("#wbdv-mySearchInput").on("keyup", function() {
+            var value = $(this).val().toLowerCase();
+            $("table tbody tr").filter(function() {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
 
         findAllUsers();
+        $('.retrieveGrp').toggle();
     }
 
     function findAllUsers() {
@@ -33,6 +42,7 @@
             clone.find('.wbdv-username').html(user.username);
             clone.find('.wbdv-first-name').html(user.firstName);
             clone.find('.wbdv-last-name').html(user.lastName);
+            clone.find('.wbdv-role').html(user.role);
 
             tbody.append(clone);
         }
@@ -52,7 +62,7 @@
             icon: "warning",
             buttons: true,
             dangerMode: true,
-        }).then(function(willDelete) {
+        }).then(function (willDelete) {
             if (willDelete) {
                 userService
                     .deleteUser(userId)
@@ -71,6 +81,8 @@
         $('#modalTitle').html('Edit User');
         $('#modalSubmit').html('Update');
         $('#modalSubmit').unbind("click").click(editUser);
+        $('.retrieveGrp').hide();
+        $('.createGrp').show();
 
         var editButton = $(event.currentTarget);
         var userId = editButton
@@ -80,12 +92,18 @@
             .attr('id');
 
         userService.findUserById(userId)
-            .then(function(user){
+            .then(function (user) {
                 $('#userIdFld').val(user.id);
                 $('#usernameFld').val(user.username);
                 $('#passwordFld').val(user.password);
                 $('#firstNameFld').val(user.firstName);
                 $('#lastNameFld').val(user.lastName);
+                if (user.role == 'Faculty') {
+                    $("#facultyFld").prop("checked", true);
+                }
+                if (user.role == 'Student') {
+                    $("#studentFld").prop("checked", true);
+                }
                 $('#createUpdateUserModal').modal('toggle');
             });
     }
@@ -96,17 +114,20 @@
         var password = $('#passwordFld').val();
         var firstName = $('#firstNameFld').val();
         var lastName = $('#lastNameFld').val();
+        var roleRadio = $('input[name="roleRadioFld"]');
+        var role = roleRadio.filter(':checked').val();
 
         var user = {
             username: username,
             password: password,
             firstName: firstName,
-            lastName: lastName
+            lastName: lastName,
+            role: role
         };
 
         userService
-            .updateUser(userId,user)
-            .then(function() {
+            .updateUser(userId, user)
+            .then(function () {
                 $.notify({
                     message: 'User has been Updated'
                 }, {
@@ -123,6 +144,8 @@
         $('#modalSubmit').html('Create');
         $('#modalSubmit').unbind("click").click(createUser);
         $('#createUpdateUserModal').modal('toggle');
+        $('.retrieveGrp').hide();
+        $('.createGrp').show();
     }
 
     function createUser() {
@@ -154,7 +177,46 @@
         });
     }
 
+    function retrieveUserModal() {
+        $('#modalTitle').html('Find User');
+        $('#modalSubmit').html('Retrieve');
+        $('#modalSubmit').unbind("click").click(retrieveUser);
+        $('#createUpdateUserModal').modal('toggle');
+        $('.retrieveGrp').show();
+        $('.createGrp').hide();
+    }
 
+    function retrieveUser() {
+        $('#userIdFld').removeClass('is-invalid');
+        var userId = $('#userIdFld').val();
+        userService.findUserById(userId)
+            .then(function (user) {
+                fillFormWithUser(user);
+                $('#modalTitle').html('Edit User');
+                $('#modalSubmit').html('Update');
+                $('#modalSubmit').unbind("click").click(editUser);
+                $('.retrieveGrp').hide();
+                $('.createGrp').show();
+                return;
+            })
+            .catch(function (error) {
+                $('#userIdFld').addClass('is-invalid');
+            });
+    }
+
+    function fillFormWithUser(user) {
+        $('#userIdFld').val(user.id);
+        $('#usernameFld').val(user.username);
+        $('#passwordFld').val(user.password);
+        $('#firstNameFld').val(user.firstName);
+        $('#lastNameFld').val(user.lastName);
+        if (user.role == 'Faculty') {
+            $("#facultyFld").prop("checked", true);
+        }
+        if (user.role == 'Student') {
+            $("#studentFld").prop("checked", true);
+        }
+    }
 
 
 })();

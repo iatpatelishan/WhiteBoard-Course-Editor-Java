@@ -1,3 +1,12 @@
 .wbdv-hidden{
     display: none;
 }
+
+
+@media screen and (min-width: 801px){
+    #wbdv-mySearchInput { display: block; }
+}
+
+@media screen and (min-width: 0px) and (max-width: 800px) {
+    #wbdv-mySearchInput { display: none; }
+}
