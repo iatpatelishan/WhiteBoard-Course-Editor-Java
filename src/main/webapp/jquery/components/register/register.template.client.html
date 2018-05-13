@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+          integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.1.1/simplex/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-+2gfL/IqcUKKHvrRK8wGmdnTFnce2ph1LXymULY+74y6VrsdZv9yPjQITajHenD9" crossorigin="anonymous">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
+            integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"
+            integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
+            crossorigin="anonymous"></script>
+    <script src="/js/bootstrap-notify.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script><!--
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.9/validator.min.js"></script>
+-->
+
+    <link href="register.style.client.css" rel="stylesheet">
+    <script src="../../models/user.model.client.js"></script>
+    <script src="../../services/user.service.client.js"></script>
+    <script src="register.controller.client.js"></script>
+
+</head>
+<body>
+
+<br/>
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-3"></div>
+        <div class="col-lg-6">
+            <h1>Register</h1>
+            <div id="registerForm" class="wbdv-form">
+                <fieldset>
+                    <div class="form-group usernameGrp createGrp">
+                        <label for="usernameFld">Username</label>
+                        <input type="text" class="form-control" id="usernameFld" name="usernameFld" placeholder="Enter Username" autofocus required>
+                        <div class="help-block with-errors"></div>
+                    </div>
+                    <div class="form-group passwordGrp createGrp">
+                        <label for="passwordFld">Password</label>
+                        <input type="password" class="form-control" id="passwordFld" name="passwordFld" placeholder="Enter Password" required>
+                        <div class="help-block with-errors"></div>
+                    </div>
+                    <div class="form-group passwordGrp createGrp">
+                        <label for="verifyPasswordFld">Verify Password</label>
+                        <input type="password" class="form-control" id="verifyPasswordFld" name="verifyPasswordFld" placeholder="Enter Password again" required data-match="#passwordFld" data-match-error="Whoops, passwords don't match">
+                        <div class="help-block with-errors"></div>
+                    </div>
+                    <button type="submit" class="btn btn-info btn-block wbdv-register">Register</button>
+                </fieldset>
+            </div>
+        </div>
+        <div class="col-lg-3"></div>
+    </div>
+</div>
+
+</body>
+</html>

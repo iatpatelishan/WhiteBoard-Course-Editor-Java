@@ -2,14 +2,16 @@ package webdev.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import webdev.exception.RestConflictException;
 import webdev.models.User;
 import webdev.repositories.UserRepository;
 
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/user")
+@RequestMapping()
 public class UserService {
 
     private UserRepository userRepository;
@@ -19,22 +21,37 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    @PostMapping
+    @PostMapping("/api/user")
     public User createUser(@RequestBody User user) {
         return userRepository.save(user);
     }
 
-    @GetMapping
+    public Optional<User> findUserByUsername(String username){
+        return userRepository.findUserByUsername(username);
+    }
+
+    @PostMapping("/api/register")
+    @ResponseBody
+    public User register(@RequestBody User user, HttpServletResponse response) {
+        if(findUserByUsername(user.getUsername()).isPresent()){
+            System.out.println("User Already Exists");
+            throw new RestConflictException("User Already Exists");
+        } else {
+            return userRepository.save(user);
+        }
+    }
+
+    @GetMapping("/api/user")
     public List<User> findAllUsers() {
         return (List<User>) userRepository.findAll();
     }
 
-    @GetMapping("/{userId}")
+    @GetMapping("/api/user/{userId}")
     public User findUserById(@PathVariable("userId") int userId) {
         return userRepository.findById(userId).orElse(null);
     }
 
-    @PutMapping("/{userId}")
+    @PutMapping("/api/user/{userId}")
     public User updateUser(@PathVariable("userId") int userId, @RequestBody User newUser) {
         Optional<User> data = userRepository.findById(userId);
         if (data.isPresent()) {
@@ -69,7 +86,7 @@ public class UserService {
         return null;
     }
 
-    @DeleteMapping("/{userId}")
+    @DeleteMapping("/api/user/{userId}")
     public void deleteUser(@PathVariable("userId") int id) {
         userRepository.deleteById(id);
     }

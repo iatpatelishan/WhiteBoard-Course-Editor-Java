@@ -4,9 +4,11 @@ function UserServiceClient() {
     this.deleteUser = deleteUser;
     this.findUserById = findUserById;
     this.updateUser = updateUser;
+    this.register = register;
     /*this.login = login();*/
     this.url = 'http://localhost:8080/api/user';
-    /*this.login = 'http://localhost:8080/api/login';*/
+    this.loginUrl = 'http://localhost:8080/api/login';
+    this.registerUrl = 'http://localhost:8080/api/register';
     var self = this;
 
     function findAllUsers() {
@@ -46,7 +48,7 @@ function UserServiceClient() {
             headers: {
                 'content-type': 'application/json'
             }
-        })
+            })
             .then(function (response) {
                 if (response.bodyUsed) {
                     return response.json();
@@ -54,5 +56,15 @@ function UserServiceClient() {
                     return null;
                 }
             });
+    }
+
+    function register(user) {
+        return fetch(self.registerUrl, {
+            method: 'POST',
+            body: JSON.stringify(user),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
     }
 }

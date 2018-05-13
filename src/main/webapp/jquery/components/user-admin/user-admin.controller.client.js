@@ -204,7 +204,7 @@
             });
     }
 
-    function fillFormWithUser(user) {
+    function renderUser(user) {
         $('#userIdFld').val(user.id);
         $('#usernameFld').val(user.username);
         $('#passwordFld').val(user.password);
