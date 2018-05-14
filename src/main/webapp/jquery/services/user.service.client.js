@@ -5,7 +5,7 @@ function UserServiceClient() {
     this.findUserById = findUserById;
     this.updateUser = updateUser;
     this.register = register;
-    /*this.login = login();*/
+    this.login = login;
     this.url = 'http://localhost:8080/api/user';
     this.loginUrl = 'http://localhost:8080/api/login';
     this.registerUrl = 'http://localhost:8080/api/register';
@@ -48,7 +48,7 @@ function UserServiceClient() {
             headers: {
                 'content-type': 'application/json'
             }
-            })
+        })
             .then(function (response) {
                 if (response.bodyUsed) {
                     return response.json();
@@ -67,4 +67,15 @@ function UserServiceClient() {
             }
         });
     }
+
+    function login(username, password) {
+        return fetch(self.loginUrl, {
+            method: 'post',
+            body: JSON.stringify({username: username, password: password}),
+            headers: {
+                'content-type': 'application/json'
+            }
+        });
+    }
+
 }

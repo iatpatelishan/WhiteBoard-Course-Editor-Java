@@ -24,14 +24,17 @@
         }
         userService.register(user)
             .then(function (response) {
-                    if(response.status == 409) {
-                        swal("Error!", "User exists!", "error");
-
-                    } else {
-                        swal("Success!", "User has been created!", "success");
-                        $('.wbdv-form').find("input[type=text], textarea, input[type=password]").val("");
-                    }
+                return response.json();
+            })
+            .then(function (myJson) {
+                if (myJson.success == false) {
+                    swal("Error!", myJson.message, "error");
+                } else {
+                    $('.wbdv-form').find("input[type=text], textarea, input[type=password]").val("");
+                    swal("Success!", "User has been created!", "success").then((value) => {
+                        window.location.replace("/jquery/components/profile/");
+                    });
                 }
-            );
+            });
     }
 })();

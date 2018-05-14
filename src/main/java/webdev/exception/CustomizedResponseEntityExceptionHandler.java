@@ -21,4 +21,11 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
                 request.getDescription(false));
         return new ResponseEntity<>(errorDetails, HttpStatus.CONFLICT);
     }
+
+    @ExceptionHandler(RestNotFoundException.class)
+    public final ResponseEntity<ErrorDetails> handleRestNotFoundException(RestNotFoundException ex, WebRequest request) {
+        ErrorDetails errorDetails = new ErrorDetails(new Date(), ex.getMessage(),
+                request.getDescription(false));
+        return new ResponseEntity<>(errorDetails, HttpStatus.NOT_FOUND);
+    }
 }

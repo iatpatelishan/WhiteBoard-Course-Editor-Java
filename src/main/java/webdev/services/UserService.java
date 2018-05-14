@@ -3,6 +3,7 @@ package webdev.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import webdev.exception.RestConflictException;
+import webdev.exception.RestNotFoundException;
 import webdev.models.User;
 import webdev.repositories.UserRepository;
 
@@ -35,7 +36,6 @@ public class UserService {
     @ResponseBody
     public User register(@RequestBody User user, HttpServletResponse response) {
         if(findUserByUsername(user.getUsername()).isPresent()){
-            System.out.println("User Already Exists");
             throw new RestConflictException("User Already Exists");
         } else {
             return userRepository.save(user);
@@ -43,8 +43,14 @@ public class UserService {
     }
 
     @PostMapping("/api/login")
-    public User login(@RequestBody User user, HttpSession session) {
-        return null;
+    public int login(@RequestBody User user, HttpSession session) {
+        if(!findUserByUsername(user.getUsername()).isPresent()){
+            throw new RestNotFoundException("Username doesnt exist!");
+        }
+        if(!userRepository.findUserByCredentials(user.getUsername(),user.getPassword()).isPresent()){
+            throw new RestNotFoundException("Invalid Password!");
+        }
+        return 1;
     }
 
 
