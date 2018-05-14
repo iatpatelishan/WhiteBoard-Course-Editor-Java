@@ -7,9 +7,11 @@ function UserServiceClient() {
     this.updateUser = updateUser;
     this.register = register;
     this.login = login;
+    this.forgotPassword = forgotPassword;
     this.url = '/api/user';
     this.loginUrl = '/api/login';
     this.registerUrl = '/api/register';
+    this.forgotPasswordUrl = '/api/forgotpassword';
     this.findByUrl='/api/findby';
     var self = this;
 
@@ -85,6 +87,13 @@ function UserServiceClient() {
                 'content-type': 'application/json'
             }
         });
+    }
+
+    function forgotPassword(username) {
+        return fetch(self.forgotPasswordUrl + '/' + username)
+            .then(function (response) {
+                return response.json();
+            });
     }
 
 }

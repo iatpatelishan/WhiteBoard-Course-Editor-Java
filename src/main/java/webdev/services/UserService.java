@@ -1,31 +1,68 @@
 package webdev.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.web.bind.annotation.*;
 import webdev.exception.RestConflictException;
 import webdev.exception.RestNotFoundException;
 import webdev.models.User;
 import webdev.repositories.UserRepository;
 
+import javax.mail.MessagingException;
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.UnsupportedEncodingException;
+import java.nio.charset.Charset;
 import java.util.List;
 import java.util.Optional;
+
 
 @RestController
 @RequestMapping()
 public class UserService {
 
     private UserRepository userRepository;
+    private JavaMailSender emailSender;
 
     @Autowired
-    UserService(UserRepository userRepository) {
+    UserService(UserRepository userRepository, JavaMailSender emailSender) {
+        this.emailSender = emailSender;
         this.userRepository = userRepository;
     }
 
     @PostMapping("/api/user")
     public User createUser(@RequestBody User user) {
         return userRepository.save(user);
+    }
+
+    @Async
+    @GetMapping("/api/forgotpassword/{username}")
+    public String forgotPassword(@PathVariable("username") String username, HttpServletRequest request){
+        User user = userRepository.findUserByUsername(username).orElse(null);
+        if(user!=null && user.getEmail()!=null) {
+            String appUrl = request.getScheme() + "://" + request.getServerName();
+
+            MimeMessage message = emailSender.createMimeMessage();
+            MimeMessageHelper helper = new MimeMessageHelper(message);
+            try {
+                helper.setTo(user.getEmail());
+                helper.setText("To reset account password, please click the link below:\n"
+                        + appUrl + "/jquery/components/login/login.template.client.html?reset="+user.getId()+" \n\n\n");
+                helper.setSubject("Password Reset - CS5610 - IshanPatel");
+                helper.setFrom("cs5610@musixplayer.com");
+            } catch (MessagingException e) {
+                e.printStackTrace();
+                System.out.println("Error Sending Email");
+            }
+            emailSender.send(message);
+        }
+        return "{}";
     }
 
     @GetMapping("/api/findby/username/{username}")

@@ -51,7 +51,7 @@
                     <button type="submit" class="btn btn-info btn-block wbdv-login">Login</button>
                     <div class="row">
                         <div class="col-6">
-                            <a href="#" class="text-info">Forgot Password?</a>
+                            <a href="#" class="text-info wbdv-reset-link" data-toggle="modal" data-target="#resetModal">Forgot Password?</a>
                         </div>
                         <div class="col-6">
                             <a href="../register/register.template.client.html" class="float-right text-info">Sign up</a>
@@ -61,6 +61,65 @@
             </div>
         </div>
         <div class="col-lg-3"></div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="resetModal" tabindex="-1" role="dialog" aria-labelledby="resetModal"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalTitle">Reset Password!</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <fieldset>
+                        <div class="form-group usernameGrp createGrp">
+                            <label for="resetUsernameFld">Username</label>
+                            <input type="text" class="form-control" id="resetUsernameFld" placeholder="Enter Username">
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary wbdv-reset">Reset Password</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="resetFinalModal" tabindex="-1" role="dialog" aria-labelledby="resetFinalModal"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Reset Password!</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <fieldset>
+                        <div class="form-group usernameGrp createGrp">
+                            <label for="resetUsernameFld">New Password</label>
+                            <input type="hidden" class="form-control" id="resetIdFld">
+                            <input type="text" class="form-control" id="resetPasswordFld" placeholder="Enter New Password">
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary wbdv-reset-final">Reset Password</button>
+            </div>
+        </div>
     </div>
 </div>
 
