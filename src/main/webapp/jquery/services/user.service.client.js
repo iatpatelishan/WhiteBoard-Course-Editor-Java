@@ -7,10 +7,10 @@ function UserServiceClient() {
     this.updateUser = updateUser;
     this.register = register;
     this.login = login;
-    this.url = 'http://localhost:8080/api/user';
-    this.loginUrl = 'http://localhost:8080/api/login';
-    this.registerUrl = 'http://localhost:8080/api/register';
-    this.findByUrl='http://localhost:8080/api/findby';
+    this.url = '/api/user';
+    this.loginUrl = '/api/login';
+    this.registerUrl = '/api/register';
+    this.findByUrl='/api/findby';
     var self = this;
 
     function findAllUsers() {
