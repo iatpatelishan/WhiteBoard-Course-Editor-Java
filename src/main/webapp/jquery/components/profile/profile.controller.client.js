@@ -11,9 +11,11 @@
         self.id=urlParams.get('uid');
 
         $('.idGrp').toggle();
+        var today = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate());
         $('#dateOfBirthFld').datepicker({
             uiLibrary: 'bootstrap4',
-            format: 'yyyy-mm-dd'
+            format: 'yyyy-mm-dd',
+            maxDate: today
         });
         $('#wbdv-updateProfile').click(updateProfile);
         $('.wbdv-logout').click(logout);
