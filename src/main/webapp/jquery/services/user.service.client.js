@@ -3,12 +3,14 @@ function UserServiceClient() {
     this.createUser = createUser;
     this.deleteUser = deleteUser;
     this.findUserById = findUserById;
+    this.findUserByUsername = findUserByUsername;
     this.updateUser = updateUser;
     this.register = register;
     this.login = login;
     this.url = 'http://localhost:8080/api/user';
     this.loginUrl = 'http://localhost:8080/api/login';
     this.registerUrl = 'http://localhost:8080/api/register';
+    this.findByUrl='http://localhost:8080/api/findby';
     var self = this;
 
     function findAllUsers() {
@@ -20,6 +22,13 @@ function UserServiceClient() {
 
     function findUserById(userId) {
         return fetch(self.url + '/' + userId)
+            .then(function (response) {
+                return response.json();
+            });
+    }
+
+    function findUserByUsername(username) {
+        return fetch(self.findByUrl + '/username/' + username)
             .then(function (response) {
                 return response.json();
             });

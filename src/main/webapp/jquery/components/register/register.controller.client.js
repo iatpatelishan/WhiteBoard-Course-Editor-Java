@@ -32,7 +32,9 @@
                 } else {
                     $('.wbdv-form').find("input[type=text], textarea, input[type=password]").val("");
                     swal("Success!", "User has been created!", "success").then((value) => {
-                        window.location.replace("/jquery/components/profile/");
+                        userService.findUserByUsername(username).then(function (user) {
+                            window.location.replace("/jquery/components/profile/profile.template.client.html?uid="+user.id);
+                        })
                     });
                 }
             });

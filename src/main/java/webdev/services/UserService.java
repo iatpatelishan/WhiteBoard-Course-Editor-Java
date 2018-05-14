@@ -28,7 +28,8 @@ public class UserService {
         return userRepository.save(user);
     }
 
-    public Optional<User> findUserByUsername(String username){
+    @GetMapping("/api/findby/username/{username}")
+    public Optional<User> findUserByUsername(@PathVariable("username") String username){
         return userRepository.findUserByUsername(username);
     }
 
@@ -61,7 +62,12 @@ public class UserService {
 
     @GetMapping("/api/user/{userId}")
     public User findUserById(@PathVariable("userId") int userId) {
-        return userRepository.findById(userId).orElse(null);
+        Optional<User> user = userRepository.findById(userId);
+        if(user.isPresent()){
+            return user.get();
+        } else {
+            throw new RestNotFoundException("Invalid User");
+        }
     }
 
     @PutMapping("/api/user/{userId}")
@@ -94,7 +100,7 @@ public class UserService {
                 user.setDateOfBirth(newUser.getDateOfBirth());
             }
             userRepository.save(user);
-            return user;
+            return findUserById(user.getId());
         }
         return null;
     }
