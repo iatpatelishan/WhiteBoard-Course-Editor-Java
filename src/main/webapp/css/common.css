@@ -1,7 +1,12 @@
 .wbdv-hidden{
     display: none;
 }
-
+.container {
+    margin-top:25px;
+}
+.wbdv-logout {
+    float: right;
+}
 
 @media screen and (min-width: 801px){
     #wbdv-mySearchInput { display: block; }
