@@ -72,11 +72,13 @@ public class UserService {
 
     @PostMapping("/api/register")
     @ResponseBody
-    public User register(@RequestBody User user, HttpServletResponse response) {
+    public User register(@RequestBody User user, HttpServletResponse response, HttpSession session) {
         if(findUserByUsername(user.getUsername()).isPresent()){
             throw new RestConflictException("User Already Exists");
         } else {
-            return userRepository.save(user);
+            user = userRepository.save(user);
+            session.setAttribute("currentUser", user);
+            return user;
         }
     }
 
