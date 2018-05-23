@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.Date;
+import java.util.List;
 import javax.persistence.*;
 
 @Entity
@@ -17,6 +18,12 @@ public class Course {
     @Getter
     @Setter
     private String title;
+
+    @Getter
+    @Setter
+    @OneToMany(mappedBy="course")
+    private List<Module> modules;
+
 
     @Temporal(TemporalType.TIMESTAMP)
     @Getter
