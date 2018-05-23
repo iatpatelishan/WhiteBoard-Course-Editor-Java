@@ -41,6 +41,9 @@ public class CourseService {
             if(newCourse.getTitle()!=null){
                 oldCourse.setTitle(newCourse.getTitle());
             }
+            if(newCourse.getTitle()!=null){
+                oldCourse.setTitle(newCourse.getTitle());
+            }
             return courseRepository.save(oldCourse);
         }
         return null;

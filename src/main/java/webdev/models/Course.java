@@ -1,4 +1,5 @@
 package webdev.models;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -26,4 +27,14 @@ public class Course {
     @Getter
     @Setter
     private Date modified;
+
+    @PrePersist
+    protected void onCreate() {
+        modified = created = new Date();
+    }
+
+    @PreUpdate
+    protected void onUpdate() {
+        modified = new Date();
+    }
 }
