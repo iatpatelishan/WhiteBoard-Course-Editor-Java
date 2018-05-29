@@ -26,6 +26,11 @@ public class Topic {
     @Setter
     private Lesson lesson;
 
+    @Getter
+    @Setter
+    @OneToMany(mappedBy="topic")
+    private List<Widget> widgets;
+
     @Temporal(TemporalType.TIMESTAMP)
     @Getter
     @Setter

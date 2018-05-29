@@ -1,5 +1,6 @@
 package webdev.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -66,4 +67,10 @@ public class Widget {
     /*@Getter
     @Setter
     private ListType listType;*/
+
+    @Getter
+    @Setter
+    @ManyToOne
+    @JsonIgnore
+    private Topic topic;
 }

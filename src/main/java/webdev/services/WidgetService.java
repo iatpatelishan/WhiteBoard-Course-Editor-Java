@@ -7,8 +7,7 @@ import webdev.models.Widget;
 import webdev.repositories.TopicRepository;
 import webdev.repositories.WidgetRepository;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @RestController
 @CrossOrigin(origins = "*", maxAge = 3600)
@@ -32,19 +31,41 @@ public class WidgetService {
 
     @GetMapping("/api/topic/{topicId}/widget")
     public List<Widget> findAllWidgetForTopic(@PathVariable("topicId") int topicId){
+        Optional<Topic> data = topicRepository.findById(topicId);
+        if(data.isPresent()){
+            return widgetRepository.findAllWidgetsForTopic(data.get());
+        }
         return null;
     }
 
-    @PostMapping("/api/topic/{topicId}/widget")
+    @PostMapping("/api/topic/{topicId}/savewidget")
+    public void saveWidgets(@PathVariable("topicId") int topicId, @RequestBody List<Widget> widgets){
+        Optional<Topic> data = topicRepository.findById(topicId);
+
+        if(data.isPresent()){
+            Topic topic = data.get();
+            topic.getWidgets().forEach((w) -> widgetRepository.delete(w));
+
+            int i=0;
+            for(Widget widget: widgets){
+                widget.setTopic(topic);
+                widget.setOrder(i++);
+                widgetRepository.save(widget);
+            }
+        }
+    }
+
+
+    @PostMapping("/api/topic/{topicId}/widget/save")
     public Widget createWidget(@PathVariable("topicId") int topicId, @RequestBody Widget widget){
         Optional<Topic> data = topicRepository.findById(topicId);
 
-        /*if(data.isPresent()){
-            widget.setTopic(data.get());*/
+        if(data.isPresent()){
+            //widget.setTopic(data.get());
             return widgetRepository.save(widget);
-        /*}
+        }
 
-        return null;*/
+        return null;
     }
 
     @PutMapping("/api/widget/{widgetId}")
