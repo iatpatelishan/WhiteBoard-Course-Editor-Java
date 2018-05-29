@@ -13,7 +13,7 @@ public class Widget {
     @Setter
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
     @Getter
     @Setter
@@ -64,9 +64,9 @@ public class Widget {
     @Setter
     private String listItems;
 
-    /*@Getter
+    @Getter
     @Setter
-    private ListType listType;*/
+    private ListType listType;
 
     @Getter
     @Setter

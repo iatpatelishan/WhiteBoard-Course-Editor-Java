@@ -48,6 +48,7 @@ public class WidgetService {
 
             int i=0;
             for(Widget widget: widgets){
+                widget.setId(null);
                 widget.setTopic(topic);
                 widget.setOrder(i++);
                 widgetRepository.save(widget);
