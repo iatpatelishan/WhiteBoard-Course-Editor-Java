@@ -62,7 +62,7 @@ public class WidgetService {
         Optional<Topic> data = topicRepository.findById(topicId);
 
         if(data.isPresent()){
-            //widget.setTopic(data.get());
+            widget.setTopic(data.get());
             return widgetRepository.save(widget);
         }
 
