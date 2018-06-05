@@ -10,8 +10,6 @@ import javax.persistence.OneToMany;
 @Entity
 public class Exam extends Widget {
 
-    
-
     public Exam() {
         super("Exam");
     }
