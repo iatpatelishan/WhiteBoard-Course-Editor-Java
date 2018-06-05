@@ -3,6 +3,8 @@ package webdev.models;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -24,6 +26,7 @@ public class Topic {
     @JsonIgnore
     @Getter
     @Setter
+    @NotFound(action = NotFoundAction.IGNORE)
     private Lesson lesson;
 
     @Getter

@@ -3,6 +3,8 @@ package webdev.models;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
 
 import javax.persistence.*;
 
@@ -73,7 +75,12 @@ public class Widget {
     @Setter
     @ManyToOne
     @JsonIgnore
+    @NotFound(action = NotFoundAction.IGNORE)
     private Topic topic;
+
+    public Widget() {
+        super();
+    }
 
     public Widget(String widgetType) {
         super();
