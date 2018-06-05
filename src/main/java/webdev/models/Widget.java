@@ -73,4 +73,9 @@ public class Widget {
     @ManyToOne
     @JsonIgnore
     private Topic topic;
+
+    public Widget(String widgetType) {
+        super();
+        this.widgetType = widgetType;
+    }
 }
