@@ -30,6 +30,7 @@ public class MultipleChoiceExamQuestionService {
         if (data.isPresent()) {
             question.setId(null);
             question.setExam(data.get());
+            question.setPoints(0);
             return multipleChoiceExamQuestionRepository.save(question);
         }
         return null;

@@ -32,6 +32,7 @@ public class EssayExamQuestionService {
         if (data.isPresent()) {
             question.setId(null);
             question.setExam(data.get());
+            question.setPoints(0);
             return essayExamQuestionRepository.save(question);
         }
         return null;

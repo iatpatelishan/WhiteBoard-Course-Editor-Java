@@ -32,6 +32,7 @@ public class TrueOrFalseExamQuestionService {
         if (data.isPresent()) {
             question.setId(null);
             question.setExam(data.get());
+            question.setPoints(0);
             return trueOrFalseExamQuestionRepository.save(question);
         }
         return null;
