@@ -9,5 +9,6 @@ import webdev.models.exam.BaseExamQuestion;
 import java.util.List;
 
 public interface BaseExamQuestionRepository extends CrudRepository<BaseExamQuestion, Integer> {
-
+    @Query("SELECT u FROM BaseExamQuestion u WHERE u.exam=:exam order by u.id asc")
+    List<BaseExamQuestion> findAllQuestionsForExam(@Param("exam") Exam exam);
 }
