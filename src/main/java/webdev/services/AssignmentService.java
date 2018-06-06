@@ -45,6 +45,7 @@ public class AssignmentService {
         Optional<Topic> data = topicRepository.findById(topicId);
 
         if (data.isPresent()) {
+            assignment.setId(null);
             assignment.setTopic(data.get());
             return assignmentRepository.save(assignment);
         }
