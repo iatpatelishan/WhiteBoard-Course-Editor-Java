@@ -19,15 +19,15 @@ public class BaseExamQuestion {
 
     @Getter
     @Setter
-    private int points;
-
-    @Getter
-    @Setter
     private String title;
 
     @Getter
     @Setter
     private String description;
+
+    @Getter
+    @Setter
+    private int points;
 
     @Getter
     @Setter
