@@ -1,8 +1,12 @@
 package webdev.models.exam;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 import webdev.models.Exam;
+
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 public class BaseExamQuestion {
 
@@ -30,6 +34,8 @@ public class BaseExamQuestion {
     @Setter
     private String typeofQuestion;
 
+    @ManyToOne
+    @JsonIgnore
     @Getter
     @Setter
     private Exam exam;
