@@ -15,7 +15,7 @@ public class BaseExamQuestion {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Getter
     @Setter
-    private int id;
+    private Integer id;
 
     @Getter
     @Setter
@@ -27,7 +27,7 @@ public class BaseExamQuestion {
 
     @Getter
     @Setter
-    private int points;
+    private Integer points;
 
     @Getter
     @Setter
