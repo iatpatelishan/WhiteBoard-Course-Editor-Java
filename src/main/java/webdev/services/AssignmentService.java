@@ -58,5 +58,27 @@ public class AssignmentService {
         assignmentRepository.deleteById(id);
     }
 
+    @PutMapping("/api/assignment/{id}")
+    public Assignment updateAssignment(@PathVariable("id") int id, @RequestBody Assignment newAssignment) {
+        Optional<Assignment> data = assignmentRepository.findById(id);
+        if (data.isPresent()) {
+            Assignment assignment = data.get();
+            if(newAssignment.getName()!=null){
+                assignment.setName(newAssignment.getName());
+            }
+            if(newAssignment.getTitle()!=null){
+                assignment.setTitle(newAssignment.getTitle());
+            }
+            if(newAssignment.getDescription()!=null){
+                assignment.setDescription(newAssignment.getDescription());
+            }
+            if(newAssignment.getPoints()!=null){
+                assignment.setPoints(newAssignment.getPoints());
+            }
+            return assignmentRepository.save(assignment);
+        }
+        return null;
+    }
+
 
 }
