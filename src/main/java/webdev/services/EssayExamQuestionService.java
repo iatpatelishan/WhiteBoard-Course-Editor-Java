@@ -21,12 +21,12 @@ public class EssayExamQuestionService {
     @Autowired
     EssayExamQuestionRepository essayExamQuestionRepository;
 
-    @GetMapping("/api/question/choice/{id}")
+    @GetMapping("/api/question/essay/{id}")
     public Optional<EssayExamQuestion> findQuestionById(@PathVariable("id") int id) {
         return essayExamQuestionRepository.findById(id);
     }
 
-    @PostMapping("/api/exam/{eid}/choice")
+    @PostMapping("/api/exam/{eid}/essay")
     public EssayExamQuestion createQuestion(@PathVariable("eid") int eid, @RequestBody EssayExamQuestion question) {
         Optional<Exam> data = examRepository.findById(eid);
         if (data.isPresent()) {
@@ -37,7 +37,7 @@ public class EssayExamQuestionService {
         return null;
     }
 
-    @PutMapping("/api/question/choice/{id}")
+    @PutMapping("/api/question/essay/{id}")
     public EssayExamQuestion updateQuestion(@PathVariable("id") int id, @RequestBody EssayExamQuestion newQuestion) {
         Optional<EssayExamQuestion> data = essayExamQuestionRepository.findById(id);
         if (data.isPresent()) {

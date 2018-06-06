@@ -26,7 +26,7 @@ public class FillInTheBlanksExamQuestionService {
         return fillInTheBlanksExamQuestionRepository.findById(id);
     }
 
-    @PostMapping("/api/exam/{eid}/choice")
+    @PostMapping("/api/exam/{eid}/blanks")
     public FillInTheBlanksExamQuestion createQuestion(@PathVariable("eid") int eid, @RequestBody FillInTheBlanksExamQuestion question) {
         Optional<Exam> data = examRepository.findById(eid);
         if (data.isPresent()) {

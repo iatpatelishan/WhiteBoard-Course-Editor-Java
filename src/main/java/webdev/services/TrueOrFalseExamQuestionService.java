@@ -26,7 +26,7 @@ public class TrueOrFalseExamQuestionService {
         return trueOrFalseExamQuestionRepository.findById(id);
     }
 
-    @PostMapping("/api/exam/{eid}/choice")
+    @PostMapping("/api/exam/{eid}/truefalse")
     public TrueOrFalseExamQuestion createQuestion(@PathVariable("eid") int eid, @RequestBody TrueOrFalseExamQuestion question) {
         Optional<Exam> data = examRepository.findById(eid);
         if (data.isPresent()) {
