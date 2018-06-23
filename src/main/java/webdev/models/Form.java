@@ -9,7 +9,7 @@ import java.util.List;
 
 public class Form extends Widget {
 
-    @OneToMany()
+    @OneToMany(mappedBy = "form")
     @Getter
     @Setter
     List<BaseFormElement> elements;

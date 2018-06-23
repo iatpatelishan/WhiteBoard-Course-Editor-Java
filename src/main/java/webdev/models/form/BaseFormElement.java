@@ -2,6 +2,7 @@ package webdev.models.form;
 
 import lombok.Getter;
 import lombok.Setter;
+import webdev.models.Form;
 
 import javax.persistence.*;
 
@@ -29,4 +30,9 @@ public class BaseFormElement {
     @Getter
     @Setter
     private String labelDirection;
+
+    @ManyToOne
+    @Getter
+    @Setter
+    private Form form;
 }
