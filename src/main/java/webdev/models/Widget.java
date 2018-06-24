@@ -5,8 +5,10 @@ import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.NotFound;
 import org.hibernate.annotations.NotFoundAction;
+import webdev.models.form.BaseFormElement;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
@@ -70,6 +72,11 @@ public class Widget {
     @Getter
     @Setter
     private ListType listType;
+
+    @OneToMany(mappedBy = "widget")
+    @Getter
+    @Setter
+    List<BaseFormElement> elements;
 
     @Getter
     @Setter

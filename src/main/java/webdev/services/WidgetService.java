@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import webdev.models.Topic;
 import webdev.models.Widget;
+import webdev.models.form.BaseFormElement;
+import webdev.repositories.BaseFormElementRepository;
 import webdev.repositories.TopicRepository;
 import webdev.repositories.WidgetRepository;
 
@@ -18,6 +20,9 @@ public class WidgetService {
 
     @Autowired
     private TopicRepository topicRepository;
+
+    @Autowired
+    private BaseFormElementRepository bfeRepository;
 
     @GetMapping("/api/widget")
     public List<Widget> findAllWidgets(){
@@ -51,7 +56,13 @@ public class WidgetService {
                 widget.setId(null);
                 widget.setTopic(topic);
                 widget.setOrder(i++);
-                widgetRepository.save(widget);
+                Widget newWidget = widgetRepository.save(widget);
+                List<BaseFormElement> ls = new ArrayList<BaseFormElement>();
+                for(BaseFormElement element: widget.getElements()){
+                    element.setId(null);
+                    element.setWidget(newWidget);
+                    ls.add(bfeRepository.save(element));
+                }
             }
         }
     }

@@ -1,12 +1,12 @@
 package webdev.models.form;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
-import webdev.models.Form;
+import webdev.models.Widget;
 
 import javax.persistence.*;
-
-@Inheritance(strategy=InheritanceType.JOINED)
+@Entity
 public class BaseFormElement {
 
     @Id
@@ -31,8 +31,17 @@ public class BaseFormElement {
     @Setter
     private String labelDirection;
 
+    @Getter
+    @Setter
+    private String elementType;
+
+    @Getter
+    @Setter
+    private Number orderno;
+
     @ManyToOne
     @Getter
     @Setter
-    private Form form;
+    @JsonIgnore
+    private Widget widget;
 }
