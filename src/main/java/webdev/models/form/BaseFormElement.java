@@ -6,6 +6,9 @@ import lombok.Setter;
 import webdev.models.Widget;
 
 import javax.persistence.*;
+import java.util.Collection;
+import java.util.List;
+
 @Entity
 public class BaseFormElement {
 
@@ -38,6 +41,19 @@ public class BaseFormElement {
     @Getter
     @Setter
     private Number orderno;
+
+    @Getter
+    @Setter
+    private String options;
+
+    @Getter
+    @Setter
+    private Integer answer;
+
+    @ElementCollection
+    @Getter
+    @Setter
+    private Collection<Integer> answerList;
 
     @ManyToOne
     @Getter
