@@ -1,5 +1,6 @@
 package webdev.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
@@ -81,7 +82,6 @@ public class Widget {
     @Getter
     @Setter
     @ManyToOne
-    @JsonIgnore
     @NotFound(action = NotFoundAction.IGNORE)
     private Topic topic;
 

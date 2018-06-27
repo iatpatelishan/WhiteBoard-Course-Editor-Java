@@ -1,6 +1,7 @@
 package webdev.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.NotFound;
@@ -32,6 +33,7 @@ public class Topic {
     @Getter
     @Setter
     @OneToMany(mappedBy="topic")
+    @JsonIgnore
     private List<Widget> widgets;
 
     @Temporal(TemporalType.TIMESTAMP)
